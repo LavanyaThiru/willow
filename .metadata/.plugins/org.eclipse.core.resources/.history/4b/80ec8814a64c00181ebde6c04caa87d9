@@ -49,9 +49,9 @@
 		        int newStreakValue = Integer.parseInt(b.getText());
 		        System.out.println("New streak value is" + " " +newStreakValue);
 		        if( newStreakValue > initialStreakValue ){
-		        	System.out.println("Pass: Streak value increased upon correct selection");
+		        	System.out.print("Pass: Streak value increased upon correct selection");
 		        } else {
-		        	System.out.println("Fail: Streak value has not increased upon correct selection");
+		        	System.out.print("Fail: Streak value has not increased upon correct selection");
 		        }
 		        
 		        driver.quit();

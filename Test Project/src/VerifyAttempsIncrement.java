@@ -14,38 +14,39 @@ public class VerifyAttempsIncrement {
 		System.setProperty("webdriver.chrome.driver", "../Test Project/driver/chromedriver");
         ChromeDriver driver = new ChromeDriver( );
 
-		//go to the url 
-		 String url = "http://www.ericrochester.com/name-game/";
+		//go to the URL
+		String url = "http://www.ericrochester.com/name-game/";
 		driver.get(url);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); // wait when searcing for an element
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS); // wait when searching for an element
 		
 		
-		//find element existing value
+		//find tries existing value
 		WebElement triesexistingValue = driver.findElement(By.xpath("//*[@id='stats']/span[1]"));
 		int existingValue = Integer.parseInt(triesexistingValue.getText()); //use Integer.parseInt() to convert a String to int.
 		//print the value
-		System.out.println("existing value" +" "+ existingValue);
+		System.out.println("Existing value of tries" +" "+ existingValue);
 
 		//now click the picture
 		WebElement picture = driver.findElement(By.xpath("//*[@id='gallery']/div/div[1]/div[1]") );
 		picture.click();
 
-		//find element newValue
+		//find tries newValue
 		WebElement triesNewValue  = driver.findElement(By.xpath("//*[@id='stats']/span[1]"));
 		 int newValue = Integer.parseInt(triesNewValue.getText());
 		 //print the value
-		 System.out.println("New Value" + " "+ newValue);
+		 System.out.println("New value of tries" + " "+ newValue);
 	
 
-		//condition - compare existing and new value
+		//condition 
 		if (existingValue < newValue){
 		System.out.println("Increment check passed");
 		} else {
 		System.out.println("Increment check failed");
 
 		}	
-	
-	
+
+
+	driver.quit();
 	
 }
 	

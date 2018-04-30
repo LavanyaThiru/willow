@@ -1,0 +1,67 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+
+public class VerifyStreakIncrement {
+	@Test
+	public void streakIncrement(){
+		//open the browser
+		System.setProperty("webdriver.chrome.driver", "../Test Project/driver/chromedriver");
+        WebDriver driver= new ChromeDriver();	
+        
+        //go to the URL
+        String url = "http://www.ericrochester.com/name-game/";
+        driver.get(url);
+        
+        //wait
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='name']")));
+        
+        //find Streak Existing value
+        WebElement a =driver.findElement(By.xpath("//*[@id='stats']/span[3]"));
+        int initialStreakValue = Integer.parseInt(a.getText());
+        System.out.println("Initial Streak Value is" + " "+initialStreakValue);
+        
+        // find person name in question and store it in  a variable
+        WebElement whoIs = driver.findElement(By.xpath("//*[@id='name']")); 
+        String personNameInQuestion = whoIs.getText();
+        System.out.println("Who is "+ " " + personNameInQuestion);
+        
+        // Find the tag that has a matching name
+        WebElement personname = driver.findElement(By.xpath("//*[@id='gallery']//div[text() ='" +personNameInQuestion+"']"));
+        String PicName = personname.getText();
+        System.out.println( "Name and picture match found" + " " +PicName );
+        
+        	
+        //click correct name and picture match
+        WebElement picClick = driver.findElement(By.xpath("//*[@id='gallery']//div[text() ='" +personNameInQuestion+"']//ancestor::div[1]"));
+        picClick.click();
+        
+        
+        // Find Streak New value and compare 
+        WebElement b =driver.findElement(By.xpath("//*[@id='stats']/span[3]"));
+        int newStreakValue = Integer.parseInt(b.getText());
+        System.out.println("New Streak Value is" + " " +newStreakValue);
+        if( newStreakValue > initialStreakValue){
+        	System.out.print("Pass: Streak value increased upon correct selection");
+        } else {
+        	System.out.print("Fail: Streak value has not increased upon correct selection");
+        }
+        
+       // driver.quit();
+ 
+        
+        
+
+        
+
+
+}
+}
+
+

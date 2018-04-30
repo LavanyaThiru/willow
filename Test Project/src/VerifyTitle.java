@@ -1,6 +1,4 @@
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
@@ -10,8 +8,8 @@ public class VerifyTitle {
 	
 	@Test
     public void titleCheck(){
-		
-		// open the  browser
+	
+    	// open the  browser
 		System.setProperty("webdriver.chrome.driver", "../Test Project/driver/chromedriver");
 		ChromeDriver driver = new ChromeDriver();
 
@@ -19,7 +17,8 @@ public class VerifyTitle {
 		String url = "http://www.ericrochester.com/name-game/";
 		driver.get(url);
 
-         // wait for web element to load
+         
+		// wait for web element to load
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//maximize browser window
@@ -39,7 +38,7 @@ public class VerifyTitle {
 		System.out.println("Title check failed");
 		}
 	
-		
+		driver.quit();
 	
 }
 	
